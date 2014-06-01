@@ -13,6 +13,7 @@ from unipath import Path
 from os import path, environ
 
 import os
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = path.dirname(path.dirname(__file__)) 
 
