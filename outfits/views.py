@@ -37,7 +37,7 @@ def create(request, template):
         return render(request, template)
 
 
-@login_required
+# @login_required
 def view_rating(request, template, outfit_id):
     """Where a user can watch real time ratings of their outfits"""
 

@@ -1,15 +1,27 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <h1>Send an Outfit to your trusted friends!</h1>
 
-    <form method="POST" action="{% url 'create_outfit' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        Take or choose a photo
-        <input type="file" name="picture"/><br/>
-        Add an optional message
-        <input type="text" name="message"/><br/>
-        <input type="submit" />
-    </form>
+
+    <div class="container">
+        <form method="POST" action="{% url 'create_outfit' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="starter-template">
+                Choose a photo
+                <div class='well'>
+                    <div class="photo-button">
+                        <img src="http://i.imgur.com/r1I4nzP.png" class="img-circle img-responsive">
+                    </div>
+                </div>
+                <input type="file" name="picture"/><br/>
+                <div class='clearfix'></div>
+                <br/>
+                Add a message<br/>
+                <input type="text" name="message"/><br/><br/>
+            </div>
+            <input type="submit" class="btn btn-large" value="Wear this?!">
+        </form>
+    </div>
+
 
 {% endblock %}

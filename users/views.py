@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from .forms import UserForm, UserProfileForm
+from .models import UserProfile
 
 
 def register(request, template):
@@ -112,3 +113,13 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/')
+
+
+def user_picture(request):
+    user = UserProfile.objects.get(user_id=request.GET['user_id']).picture.url
+    return HttpResponse(user, content_type="application/json")
+
+
+def user_name(request):
+    user = UserProfile.objects.get(user_id=request.GET['user_id']).user.username
+    return HttpResponse(user, content_type="application/json")

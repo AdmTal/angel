@@ -11,7 +11,12 @@ urlpatterns = patterns('',
                        url(r'^login/$', 'users.views.user_login', {'template': 'login.html'}, name='login'),
                        url(r'^logout/$', 'users.views.user_logout', name='logout'),
                        url(r'^admin/', include(admin.site.urls)),
-                       url(r'^outfits/', include('outfits.urls'))
+                       url(r'^outfits/', include('outfits.urls')),
+
+                       url(r'^api/picture', 'users.views.user_picture', name='api-picture'),
+                       url(r'^api/name', 'users.views.user_name', name='api-name'),
+
+                       url(r'friends/$', 'angel.views.friends', name='friends'),
 )
 
 

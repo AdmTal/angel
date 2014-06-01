@@ -3,28 +3,68 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
     {% if registered %}
         <strong>Thank you for registering</strong>
         <a href="/">Go Home</a><br/>
     {% else %}
-        <strong>Register Here</strong><br/>
+        <div class="register-bg">
+            <p class='regis'>Register</p>
 
-        <form id="user_form" method="post" action="/register/"
-              enctype="multipart/form-data">
+            <div class='register-username'>
 
-            {% csrf_token %}
+                <form id="user_form" method="post" action="/register/"
+                      enctype="multipart/form-data">
 
-            <!-- Display each form. The as_p method wraps each element in a paragraph
-                 (<p>) element. This ensures each element appears on a new line,
-                 making everything look neater. -->
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
+                    {% csrf_token %}
+                    <div class="form-group log-user login-button">
+                        <div class="col-sm-12">
+                            {{ user_form.username }}
+                        </div>
+                        <br>
+                    </div>
+                    <div class="form-group log-user login-button">
+                        <div class="col-sm-12">
+                            {{ user_form.email }}
+                        </div>
+                        <br>
+                    </div>
+                    <div class="form-group log-user login-button">
+                        <div class="col-sm-12">
+                            {{ user_form.password }}
+                        </div>
+                        <br>
+                    </div>
+                    <div class="form-group log-user login-button">
+                        <div class="col-sm-12">
+                            {{ profile_form.pushover_key }}
+                        </div>
+                        <br>
 
-            <!-- Provide a button to click to submit the form. -->
-            <input type="submit" name="submit" value="Register"/>
+                        <div class="form-group choose-pic">
+                            <label for="exampleInputFile">Profile Picture</label>
+                            <center class='choose-pic'>{{ profile_form.picture }}</center>
+                        </div>
+                        <p class="help-block"></p>
+                    </div>
+                    <br>
 
-        </form>
+
+                    <div class="form-group log-user"><br>
+
+                        <div class="col-sm-12">
+                            <input type="submit" class="btn btn-default sign-in-button" value="Register">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
     {% endif %}
+{% endblock %}
+
+{% block javascript %}
+    $('#id_pushover_key').attr('placeholder', 'Push Over Key');
+    $('#id_username').attr('placeholder', 'Username');
+    $('#id_email').attr('placeholder', 'email@example.com');
+    $('#id_password').attr('placeholder', 'Password');
 {% endblock %}

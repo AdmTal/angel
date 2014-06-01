@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
+{% block style %}
+    <style>
+        body{
+            background-color: #00c97b;
+        }
+    </style>
+{% endblock %}
+
 {% block title %}Login{% endblock %}
 
 {% block body %}
@@ -8,15 +16,20 @@
         <h3>{{ error_msg }}</h3>
     {% endif %}
 
-    <div class="container">
+    <div>
         <div class="login-bg">
             <div class='login-social'>
                 <div>
-                    <button class="login-button">Facebook</button>
+                    <center><img src="http://i.imgur.com/ExfXoZL.png" class="logo-signin img-responsive social-button">
+                    </center>
                 </div>
                 <div>
-                    <button class="login-button">Instagram</button>
+                    <center><img src="http://i.imgur.com/TpLpUqW.png" class="img-responsive social-button"></center>
                 </div>
+                <div>
+                    <center><img src="http://i.imgur.com/Gkzbjl5.png" class='img-responsive social-button'></center>
+                </div>
+                <div class='clearfix'></div>
             </div>
             <p class="login-or">OR</p>
 
@@ -25,35 +38,27 @@
                 <!-- username and password login form -->
                 <form id="login_form" method="post" action="{% url 'login' %}">
                     {% csrf_token %}
-
-                    <div class="form-group">
-                        <div class="col-sm-10">
+                    <div class="form-group log-user login-button">
+                        <div class="col-sm-12">
                             <input type="text" name="username" value="" size="50" placeholder="Username"/>
                         </div>
+                        <br>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-10">
+                    <div class="form-group log-user login-button">
+                        <div class="col-sm-12">
                             <input type="password" name="password" value="" size="50" placeholder="Password"/>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox"></div>
+                    <div class="form-group log-user"><br>
+
+                        <div class="col-sm-12">
+                            <input type="submit" class="btn btn-default sign-in-button" value="Sign In"/>
                         </div>
-                    </div>
-                    <div>
-                        <input type="submit" class="btn btn-default" value="Sign In"/>
-                    </div>
                 </form>
-                <br />
-                <div class='bottom-icons'>
-                    <span class="glyphicon glyphicon-unchecked login-bottom"></span>
-                    <span class="glyphicon glyphicon-unchecked login-bottom"></span>
-                    <span class="glyphicon glyphicon-unchecked login-bottom"></span>
-                </div>
             </div>
         </div>
     </div>
+    </div>
+
 {% endblock %}

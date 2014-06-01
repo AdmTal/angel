@@ -4,194 +4,317 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300|Bitter:400,700' rel='stylesheet' type='text/css'>
 <style>
 
-    hr {
-        margin-top: 5px;
-        margin-bottom: 5px;
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+body {
+    font-family: 'Bitter', serif;;
+}
+
+.nav-center {
+    text-align: center;
+}
+
+a {
+    color: black;
+    text-decoration: none !important;
+}
+
+.well {
+    min-height: 10px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border-radius: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* nav bar */
+
+.navbar-default {
+    background-color: #00c97b;
+    border-color: #00c97b;
+}
+
+.navbar-default .navbar-brand {
+    color: #000000;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-text {
+    color: #00c97b;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #00c97b;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #00c97b;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #00c97b;
+    background-color: #00c97b;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #00c97b;
+    background-color: #00c97b;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #00c97b;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #00c97b;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #00c97b;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #00c97b;
+}
+
+.navbar-default .navbar-link {
+    color: #00c97b;
+}
+
+.navbar-default .navbar-link:hover {
+    color: #00c97b;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #ecf0f1;
     }
 
-    .nav-center {
-        text-align: center;
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #ffbbbc;
     }
 
-    a {
-        color: black;
-        text-decoration: none !important;
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #ffbbbc;
+        background-color: #c0392b;
     }
+}
 
-    .well {
-        min-height: 10px;
-        margin-bottom: 0px;
-        margin-top: 0px;
-        border-radius: 0px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
+/* 1.html and 2.html */
+.friend-vote {
+    font-size: 10px;
+    margin: 5px;
+}
 
-    /* 1.html and 2.html */
-    .friend-vote {
-        font-size: 10px;
-        margin: 5px;
-    }
+.friend-name {
 
-    .friend-name {
+}
 
-    }
+.friend-comment {
+    font-family: 'Source Sans Pro';
+    font-size: 15px;
+    line-height: 5px
+}
 
-    .friend-comment {
-        font-size: 12px;
-        line-height: 5px
-    }
+.rating {
+    margin-left: 1px;
+}
 
-    .rating {
-        margin-left: 1px;
-    }
+.rating-archive {
+    margin-top: 0px !important;
+}
 
-    .rating-archive {
-        margin-top: 0px !important;
-    }
+.comments-number {
+    margin-right: 3px;
+    margin-left: 15px;
+}
 
-    .comments-number {
-        margin-right: 3px;
-        margin-left: 3px;
-    }
+.exit-image {
+    width: 5%;
+}
 
-    .exit-image {
-        width: 5%;
-    }
+.main-image {
+    width: 90%;
+    margin-bottom: 10px;
+}
 
-    .main-image {
-        width: 90%;
-        margin-bottom: 10px;
-    }
+.title-header {
+    background-color: #00c97b;
+    padding: 2px;
+    margin: 10px;
+    color: white;
+}
 
-    .title-header {
-        background-color: #B0B0B0;
-        padding: 2px;
-        margin: 10px;
-    }
+/* 3.html taking a photo */
 
-    /* 3.html taking a photo */
+.photo-button img {
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
 
-    .photo-button img {
-        margin: 0 auto;
-        display: block;
-        padding: 10px;
-        margin-top: 20px;
-        margin-bottom: 50px;
-    }
+/* 4.html picture preview */
+.picture-preview {
+    background-color: #4A4A4A;
 
-    /* 4.html picture preview */
-    .picture-preview {
-        background-color: #4A4A4A;
+}
 
-    }
+.pic-preview {
+    padding: 30px;
+}
 
-    .pic-preview {
-        padding: 30px;
-    }
+.preview-buttons {
+    margin: 5px;
+    padding: 5px;
+}
 
-    .preview-buttons {
-        margin: 5px;
-        padding: 5px;
-    }
+.preview-buttons button {
+    margin: 0 auto;
+    display: block;
+    padding: 5px 20px 5px 20px;
+    margin-bottom: 5px;
+}
 
-    .preview-buttons button {
-        margin: 0 auto;
-        display: block;
-        padding: 5px 20px 5px 20px;
-        margin-bottom: 5px;
-    }
+.preview-buttons p {
+    text-align: center;
+    color: white;
+}
 
-    .preview-buttons p {
-        text-align: center;
-        color: white;
-    }
+/* 5.html post photo */
 
-    /* 5.html post photo */
+.picture-post {
+    background-color: white;
 
-    .picture-post {
-        background-color: white;
+}
 
-    }
+.pic-post {
+    padding: 30px;
+}
 
-    .pic-post {
-        padding: 30px;
-    }
+.post-buttons button {
+    margin: 0 auto;
+    display: block;
+    padding: 5px 20px 5px 20px;
+    margin-bottom: 5px;
+}
 
-    .post-buttons button {
-        margin: 0 auto;
-        display: block;
-        padding: 5px 20px 5px 20px;
-        margin-bottom: 5px;
-    }
+/* 6.html wait for stats */
+.wait-stats {
+    background-color: #00c97b;
+    text-align: center;
+    padding: 5px;
+    font-size: 20px;
+}
 
-    /* 6.html wait for stats */
-    .wait-stats {
-        background-color: #BDBDBD;
-        text-align: center;
-        padding: 5px;
-        font-size: 20px;
-    }
+.wait-image {
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+}
 
-    .wait-image {
-        margin: 0 auto;
-        display: block;
-        padding: 10px;
-    }
+/* 11.html log in page */
 
-    /* 11.html log in page */
+.login-bg {
+    background-color: #00c97b;
+    padding-bottom: 100px;
+}
 
-    .login-bg {
-        background-color: #BDBDBD;
-    }
+.login-social {
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
 
-    .login-social {
-        padding: 10px;
-        padding-top: 75 fpx;
-        padding-bottom: 30px;
-    }
+.login-or {
+    color: white;
+    text-align: center
+}
 
-    .login-button {
-        margin: 20px auto;
-        padding: 20px 70px 20px 70px;
-        display: block;
-    }
+.login-bottom {
+    padding: 5px;
+    margin-bottom: 10px;
+}
 
-    .login-or {
-        color: white;
-        text-align: center
-    }
+.bottom-icons {
+    margin: 0 auto;
+    display: block;
+}
 
-    .login-bottom {
-        padding: 5px;
-        margin-bottom: 10px;
-    }
+.sign-in-button {
+    padding-right: 10px;
+    padding-left: 10px;
+}
 
-    .bottom-icons {
-        margin: 0 auto;
-        display: block;
-    }
+.log-user {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
 
-    /* 15.html  vote now for friends */
+.social-button {
+    padding: 5px;
+}
 
-    .vote-now {
-        margin: 12px;
-        font-size: 2.2em;
+.logo-signin {
+    padding-bottom: 15px;
+}
 
-    }
+/* 15.html  vote now for friends */
 
-    .submit-answer {
-        text-align: center;
-    }
+.vote-now {
+    margin: 12px;
+    font-size: 2.2em;
 
-    .sub-button {
-        margin-top: 10px;
-        padding-right: 40px;
-        padding-left: 40px;
-    }
+}
 
+.submit-answer {
+    text-align: center;
+}
+
+.sub-button {
+    margin-top: 10px;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+.starter-template {
+    padding-bottom: 30px
+}
+
+/* sign-up page */
+
+.register-bg {
+    background-color: #00c97b;
+    padding-bottom: 100px;
+    padding-top: 20px
+}
+
+.regis {
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+
+.choose-pic {
+    padding-left: 50px;
+}
 </style>
 <title>Wear This?</title>
 
@@ -203,8 +326,8 @@
 
 <!-- Bootstrap -->
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300|Bitter:400,700' rel='stylesheet'
+      type='text/css'>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -216,23 +339,27 @@
 <body>
 
 <!-- Static navbar -->
-<!-- <header class="title-header"><center><h4>Can I Wear This Out Of The House?</h4></center></header> -->
-<div class="navbar navbar-default nav-center" role="navigation">
-    <div class="navbar-header">
-        <!--     <button type="button" class="navbar-toggle" > -->
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        </button>
-        {#    <a class="navbar-brand" href="#">Archive</a>#}
-        <a class="navbar-brand" href="{% url 'create_outfit' %}">Post</a>
-        {% if user.is_authenticated %}
-            <a class="navbar-brand" href="{% url 'logout' %}">Log out</a>
-        {% endif %}
-        {#    <a class="navbar-brand" href="#">Friends</a>#}
-        {#    <a class="navbar-brand" href="#">Answer</a>#}
+{% if user.is_authenticated %}
+    <header class="title-header">
+        <center><h4>Can I Wear This Out Of The House?</h4></center>
+    </header>
+    <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+        <div class="navbar-header">
+            <!--     <button type="button" class="navbar-toggle" > -->
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            {#    <a class="navbar-brand" href="#">Archive</a>#}
+            <a class="navbar-brand" href="{% url 'create_outfit' %}">Post</a>
+            {% if user.is_authenticated %}
+                <a class="navbar-brand" href="{% url 'logout' %}">Log out</a>
+            {% endif %}
+            <a class="navbar-brand" href="{% url 'friends' %}">Friends</a>
+            {#    <a class="navbar-brand" href="#">Answer</a>#}
+        </div>
     </div>
-</div>
+{% endif %}
 
 <center>
     {% block body %}
@@ -241,7 +368,7 @@
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
-
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 {% block javascript %}
 {% endblock %}
 

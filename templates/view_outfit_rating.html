@@ -6,7 +6,8 @@
     <div class="pull-left main-image"><img width="100%" src="{{ outfit.picture.url }}"/></div>
     <div class='clearfix'></div>
 
-    <div id="ratings" class='well'>
+    <div class='well' id="ratings">
+
 
     </div>
 
@@ -30,7 +31,7 @@
 
 
         pubnub.history({
-            channel: 'rate-outfit-{{ outfit.id }}',
+            channel: 'new-rate-outfit-{{ outfit.id }}',
             count: 100,
             callback: function (m) {
                 $.each(m[0], function (idx, val) {
@@ -40,26 +41,69 @@
         });
 
         function get_msg(m) {
+            console.log(m);
             var res = m.split(':');
-            var name = res[0];
+            var id = res[0];
             var rating = res[1];
             var message = res[2];
 
-            var div = document.getElementById('ratings');
+            var picture = getPicture(id);
+            var name = getName(id);
 
-            var block = '<div class="rating"><center>Avg. Rating';
+            var div = document.getElementById('ratings');
+            {% load template_tags %}
+            var block = "<div class='friend-row'>";
+            block += "<div class='friend-vote row pull-left'>";
+            block += "<img class='pull-left' src='"+image+"' style='max-width:35px; max-height:35px'/>";
+            block += "<span class='pull-left friend-name'>"+name+"</span><br>";
+            if (message != '' && message)
+                block += "<span class='friend-comment'>" + message + "</span>";
+            block += "</div>"
+            block += "</div>";
+
             for (var i = 0; i < rating; i++) {
-                block += '<span class="glyphicon glyphicon-unchecked rating"></span>'
+                block += '<span class="glyphicon glyphicon-unchecked rating pull-right"></span>';
             }
-            block += '<span class="comments-number">' + rating
-            block += '</span><span class="glyphicon glyphicon-comment">'+message+'</span></center></div>'
+
+            block += "<div class='clearfix'></div><hr/>";
+
 
             div.innerHTML = div.innerHTML + block;
         }
 
+        function getPicture(id) {
+            var result = null;
+            var scriptUrl = "http://angelhack2014.herokuapp.com/api/picture/?user_id=" + id;
+            $.ajax({
+                url: scriptUrl,
+                type: 'get',
+                dataType: 'html',
+                async: false,
+                success: function (data) {
+                    result = data;
+                }
+            });
+            return result;
+        }
+
+        function getName(id) {
+            var result = null;
+            var scriptUrl = "http://angelhack2014.herokuapp.com/api/name/?user_id=" + id;
+            $.ajax({
+                url: scriptUrl,
+                type: 'get',
+                dataType: 'html',
+                async: false,
+                success: function (data) {
+                    result = data;
+                }
+            });
+            return result;
+        }
+
         // Subscribe to a channel
         pubnub.subscribe({
-            channel: 'rate-outfit-{{ outfit.id }}',
+            channel: 'new-rate-outfit-{{ outfit.id }}',
             message: get_msg
         });
 
