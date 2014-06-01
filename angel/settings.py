@@ -166,6 +166,6 @@ AWS_ACCESS_KEY_ID = environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = environ['AWS_SECRET_ACCESS_KEY']
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 # ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 STATIC_URL = S3_URL
