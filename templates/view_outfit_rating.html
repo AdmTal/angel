@@ -3,12 +3,12 @@
 {% block body %}
     <div class="container">
 
-    <div class="pull-left main-image"><img width="100%" src="{{ outfit.picture.url }}"/></div>
-    <div class='clearfix'></div>
+        <div class="pull-left main-image"><img width="100%" src="{{ outfit.picture.url }}"/></div>
+        <div class='clearfix'></div>
 
-    <div class='well' id="ratings">
+        <div class='well' id="ratings">
 
-
+        </div>
     </div>
 
 {% endblock %}
@@ -19,16 +19,9 @@
 
     <script>
         var pubnub = PUBNUB.init({
-            publish_key: "{{ pubnub_publish_key }}",
+{#            publish_key: "{{ pubnub_publish_key }}",#}
             subscribe_key: "{{ pubnub_subscribe_key }}"
         });
-
-        pubnub.time(
-                function (time) {
-                    console.log(time); // examples ;)
-                }
-        );
-
 
         pubnub.history({
             channel: 'new-rate-outfit-{{ outfit.id }}',
@@ -51,11 +44,10 @@
             var name = getName(id);
 
             var div = document.getElementById('ratings');
-            {% load template_tags %}
             var block = "<div class='friend-row'>";
             block += "<div class='friend-vote row pull-left'>";
-            block += "<img class='pull-left' src='"+image+"' style='max-width:35px; max-height:35px'/>";
-            block += "<span class='pull-left friend-name'>"+name+"</span><br>";
+            block += "<img class='pull-left' src='" + picture + "' style='max-width:35px; max-height:35px'/>";
+            block += "<span class='pull-left friend-name'>" + name + "</span><br>";
             if (message != '' && message)
                 block += "<span class='friend-comment'>" + message + "</span>";
             block += "</div>"
@@ -66,7 +58,6 @@
             }
 
             block += "<div class='clearfix'></div><hr/>";
-
 
             div.innerHTML = div.innerHTML + block;
         }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,60 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <style>
+.rating {
+    float: left;
+}
 
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+    clip: rect(0, 0, 0, 0);
+}
+
+.rating:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 200%;
+    line-height: 1.2;
+    color: #ddd;
+    text-shadow: 1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow: 1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating > label:active {
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
 
 hr {
     margin-top: 5px;
@@ -348,58 +401,75 @@ a {
         {#    <a class="navbar-brand" href="#">Answer</a>#}
     </div>
 </div>
-    <h1>Rate this outfit</h1>
 
-    <div>
-        <img src="{{ outfit.picture.url }}" style="max-width: 100px; max-height: 100px"/>
+<div class="starter-template">
+    <center>Rate {{ outfit.user.username }}'s Outfit</center>
+    <div class="wait-image">
+        <center><img class='img-responsive' src="{{ outfit.picture.url }}"/></center>
     </div>
-
+    <div class='clearfix'></div>
     <form id='rating' method="POST" action="/outfits/rate-an-outfit/{{ outfit.id }}/">
         {% csrf_token %}
-        <ul>
-            <li><input type="radio" name="rating" value="1"/>*</li>
-            <li><input type="radio" name="rating" value="2"/>**</li>
-            <li><input type="radio" name="rating" value="3"/>***</li>
-            <li><input type="radio" name="rating" value="4"/>****</li>
-            <li><input type="radio" name="rating" value="5"/>*****</li>
-        </ul>
-        <input type="text" name="message"/> <br/>
+        <center>
+            <fieldset class="rating">
+                <legend>Rate {{ outfit.user.username }}'s Outfit</legend>
+                <input type="radio" id="star5" name="rating" value="5"/><label for="star5">5 stars</label>
+                <input type="radio" id="star4" name="rating" value="4"/><label for="star4">4 stars</label>
+                <input type="radio" id="star3" name="rating" value="3"/><label for="star3">3 stars</label>
+                <input type="radio" id="star2" name="rating" value="2"/><label for="star2">2 stars</label>
+                <input type="radio" id="star1" name="rating" value="1"/><label for="star1">1 star</label>
+            </fieldset>
+        </center>
+        <div>
+            <div class='well'>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name='message'
+                           placeholder="Write a comment...">
+                </div>
+            </div>
+        </div>
     </form>
-    <input type="button" value="Send rating" onclick="submit()">
+    <button type="button" class='btn btn-large' value="Send rating" onclick="submit()">Send Rating</button>
+</div>
 
-{% endblock %}
+</div>
+<br><br><br><br>
+</div>
+</div>
 
-{% block javascript %}
-    <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+</div>
 
-    <script>
-        var pubnub = PUBNUB.init({
-            publish_key: "{{ pubnub_publish_key }}",
-            subscribe_key: "{{ pubnub_subscribe_key }}"
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+
+<script>
+    var pubnub = PUBNUB.init({
+        publish_key: "{{ pubnub_publish_key }}",
+        subscribe_key: "{{ pubnub_subscribe_key }}"
+    });
+
+    function submit() {
+        // Publish rating
+
+        var rating = $('fieldset input[name=rating]:checked').val();
+        var message = $('#exampleInputPassword1').val();
+
+        if (rating == undefined)
+            return;
+
+        var msg = '{{ user.id }}:' + rating + ':' + message;
+        x = pubnub.publish({
+            channel: 'new-rate-outfit-{{ outfit.id }}',
+            message: msg
+        }, function (evt) {
+            if (evt[0] === 1) {
+                document.forms[0].submit();
+            } else {
+                submit();
+            }
         });
-
-        pubnub.time(
-                function (time) {
-                    console.log(time); // examples ;)
-                }
-        );
-
-        function submit() {
-            // Publish rating
-
-            var rating = $('#rating [name=rating]:checked').val();
-            var message = $('#rating [name=message]').val();
-
-            if (rating == undefined)
-                return;
-
-            var msg = '{{ user.id }}:' + rating + ':' + message;
-            pubnub.publish({
-                channel: 'new-rate-outfit-{{ outfit.id }}',
-                message: msg
-            });
-
-            document.forms[0].submit();
-        }
-    </script>
-
+    }
+</script>
+</body>
+</html>

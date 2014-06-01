@@ -331,73 +331,75 @@ a {
 </head>
 <body>
 <!-- Static navbar -->
-<header class="title-header">
-    <center><h4>Can I Wear This Out Of The House?</h4></center>
-</header>
-<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-    <div class="navbar-header">
-        <!--     <button type="button" class="navbar-toggle" > -->
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        </button>
+{#<header class="title-header">#}
+{#    <center><h4>Can I Wear This Out Of The House?</h4></center>#}
+{#</header>#}
+{#<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">#}
+{#    <div class="navbar-header">#}
+{#        <!--     <button type="button" class="navbar-toggle" > -->#}
+{#        <span class="icon-bar"></span>#}
+{#        <span class="icon-bar"></span>#}
+{#        <span class="icon-bar"></span>#}
+{#        </button>#}
         {#    <a class="navbar-brand" href="1.html">Archive</a>#}
-        <a class="navbar-brand" href="{% url 'create_outfit' %}">Post</a>
-        <a class="navbar-brand" href="{% url 'friends' %}">Friends</a>
-        <a class="navbar-brand" href="{% url 'logout' %}">Log out</a>
+{#        <a class="navbar-brand" href="{% url 'create_outfit' %}">Post</a>#}
+{#        <a class="navbar-brand" href="{% url 'friends' %}">Friends</a>#}
+{#        <a class="navbar-brand" href="{% url 'logout' %}">Log out</a>#}
         {#    <a class="navbar-brand" href="#">Answer</a>#}
+{#    </div>#}
+{#</div>#}
+
+{% if error_msg %}
+    <h3>{{ error_msg }}</h3>
+{% endif %}
+
+<div>
+    <div class="login-bg">
+        <div class='login-social'>
+            <div>
+                <center><img src="http://i.imgur.com/ExfXoZL.png" class="logo-signin img-responsive social-button">
+                </center>
+            </div>
+            <div>
+                <center><img src="http://i.imgur.com/TpLpUqW.png" class="img-responsive social-button"></center>
+            </div>
+            <div>
+                <center><img src="http://i.imgur.com/Gkzbjl5.png" class='img-responsive social-button'></center>
+            </div>
+            <div class='clearfix'></div>
+        </div>
+        <p class="login-or">OR</p>
+
+        <div class='login-username'>
+
+            <!-- username and password login form -->
+            <form id="login_form" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group log-user login-button">
+                    <div class="col-sm-12">
+                        <input type="text" name="username" value="" size="50" placeholder="Username"/>
+                    </div>
+                    <br>
+                </div>
+                <div class="form-group log-user login-button">
+                    <div class="col-sm-12">
+                        <input type="password" name="password" value="" size="50" placeholder="Password"/>
+                    </div>
+                </div>
+
+                <div class="form-group log-user"><br>
+
+                    <div class="col-sm-12">
+                        <input type="submit" class="btn btn-default sign-in-button" value="Sign In"/>
+                        <a class="btn btn-default sign-in-button" href="{% url 'register' %}">Register</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
     </div>
 </div>
 
-{% block title %}Login{% endblock %}
-
-{% block body %}
-
-    {% if error_msg %}
-        <h3>{{ error_msg }}</h3>
-    {% endif %}
-
-    <div>
-        <div class="login-bg">
-            <div class='login-social'>
-                <div>
-                    <center><img src="http://i.imgur.com/ExfXoZL.png" class="logo-signin img-responsive social-button">
-                    </center>
-                </div>
-                <div>
-                    <center><img src="http://i.imgur.com/TpLpUqW.png" class="img-responsive social-button"></center>
-                </div>
-                <div>
-                    <center><img src="http://i.imgur.com/Gkzbjl5.png" class='img-responsive social-button'></center>
-                </div>
-                <div class='clearfix'></div>
-            </div>
-            <p class="login-or">OR</p>
-
-            <div class='login-username'>
-
-                <!-- username and password login form -->
-                <form id="login_form" method="post" action="{% url 'login' %}">
-                    {% csrf_token %}
-                    <div class="form-group log-user login-button">
-                        <div class="col-sm-12">
-                            <input type="text" name="username" value="" size="50" placeholder="Username"/>
-                        </div>
-                        <br>
-                    </div>
-                    <div class="form-group log-user login-button">
-                        <div class="col-sm-12">
-                            <input type="password" name="password" value="" size="50" placeholder="Password"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group log-user"><br>
-
-                        <div class="col-sm-12">
-                            <input type="submit" class="btn btn-default sign-in-button" value="Sign In"/>
-                        </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    </div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+</body>
+</html>

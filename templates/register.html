@@ -3,7 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% if registered %}
+    {% if user.is_authenticated %}
         <strong>Thank you for registering</strong>
         <a href="/">Go Home</a><br/>
     {% else %}
@@ -63,8 +63,11 @@
 {% endblock %}
 
 {% block javascript %}
-    $('#id_pushover_key').attr('placeholder', 'Push Over Key');
-    $('#id_username').attr('placeholder', 'Username');
-    $('#id_email').attr('placeholder', 'email@example.com');
-    $('#id_password').attr('placeholder', 'Password');
+    <script>
+
+        $('#id_pushover_key').attr('placeholder', 'Push Over Key');
+        $('#id_username').attr('placeholder', 'Username');
+        $('#id_email').attr('placeholder', 'email@example.com');
+        $('#id_password').attr('placeholder', 'Password');
+    </script>
 {% endblock %}

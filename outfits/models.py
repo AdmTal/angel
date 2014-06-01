@@ -10,6 +10,9 @@ class Outfit(BaseModel):
     picture = models.ImageField(upload_to='outfit_images', blank=True, help_text='picture of outfit')
     message = models.CharField(max_length='256', blank=True, help_text='message to include with picture')
 
+    def __unicode__(self):
+        return "{} -- {}".format(self.user, self.message)
+
 
 class OutfitRating(BaseModel):
     """A users rating for an outfit"""
@@ -17,6 +20,9 @@ class OutfitRating(BaseModel):
     score = models.IntegerField()
     comment = models.CharField(max_length='256', blank=True, help_text='Comment to include with rating')
     outfit = models.ForeignKey('Outfit', help_text='Outfit being rated')
+
+    def __unicode__(self):
+        return "{} -- {} -- ({})".format(self.user, self.score, self.outfit)
 
     # is_expired ... check for date_created + 2 min
 
