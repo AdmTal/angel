@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from angel.settings.base import get_env_variable
+from angel.settings import get_env_variable
 
 from django.conf import settings
 

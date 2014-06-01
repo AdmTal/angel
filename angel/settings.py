@@ -9,17 +9,17 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
 from unipath import Path
+from os import path, environ
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+import os
 
-from django.core.exceptions import ImproperlyConfigured
+BASE_DIR = path.dirname(path.dirname(__file__)) 
 
 
 def get_env_variable(var_name):
     try:
-        return os.environ[var_name]
+        return environ[var_name]
     except KeyError:
         error_msg = "Set the %s enviroment variable" % var_name
         raise ImproperlyConfigured(error_msg)
@@ -39,10 +39,10 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 ### Set the path to our current one
-PROJECT_DIR = Path(__file__).ancestor(3)       ### root of the project
-MEDIA_DIR = PROJECT_DIR.child('media')         ### where dynamic media (user uploads) are stored
+PROJECT_DIR = Path(__file__).ancestor(3)  ### root of the project
+MEDIA_DIR = PROJECT_DIR.child('media')  ### where dynamic media (user uploads) are stored
 TEMPLATE_DIR = PROJECT_DIR.child('templates')  ### where our templates are stored
-STATIC_MEDIA_DIR = PROJECT_DIR.child('static') ### where our static media is stored
+STATIC_MEDIA_DIR = PROJECT_DIR.child('static')  ### where our static media is stored
 
 # Application definition
 
@@ -54,6 +54,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'south',
+    'storages',
+    'boto',
     'users',
     'outfits',
 )
@@ -83,6 +85,7 @@ TEMPLATE_DIRS = (
 
 ROOT_URLCONF = 'angel.urls'
 
+WSGI_APPLICATION = 'angel.wsgi.application'
 WSGI_APPLICATION = 'angel.wsgi.application'
 
 # Internationalization
@@ -117,14 +120,47 @@ MEDIA_URL = '/media/'
 # Example: "/var/www/example.com/static/"
 STATIC_ROOT = STATIC_MEDIA_DIR
 
-# URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
+
+PROJECT_PATH = path.dirname(path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
-# Additional locations of static files
+
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_DIR, 'angel', 'static'),
+    path.join(PROJECT_PATH, 'static'),
 )
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config()
+}
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config()
+}
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+
+AWS_STORAGE_BUCKET_NAME = 'angelhack2014'
+AWS_ACCESS_KEY_ID = environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = environ['AWS_SECRET_ACCESS_KEY']
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+STATIC_URL = S3_URL

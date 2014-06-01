@@ -1,5 +1,5 @@
 import requests
-from angel.settings.base import get_env_variable
+from angel.settings import get_env_variable
 
 
 # ignoring device option for now
