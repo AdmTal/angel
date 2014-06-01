@@ -157,6 +157,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
+DOMAIN = 'angelhack2014.herokuapp.com'
+
 # Static asset configuration
 
 AWS_STORAGE_BUCKET_NAME = 'angelhack2014'
