@@ -1,15 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}View Outfit Rating{% endblock %}
-
 {% block body %}
-    <h1>Wait for ratings on your outfit...</h1>
+    <div class="container">
 
-    <div>
-        <img src="{{ outfit.picture.url }}" style="max-width: 300px; max-height: 300px"/>
-    </div>
+    <div class="pull-left main-image"><img width="100%" src="{{ outfit.picture.url }}"/></div>
+    <div class='clearfix'></div>
 
-    <div id="ratings">
+    <div id="ratings" class='well'>
 
     </div>
 
@@ -36,7 +33,9 @@
             channel: 'rate-outfit-{{ outfit.id }}',
             count: 100,
             callback: function (m) {
-                $.each(m[0], function(idx, val){get_msg(val);})
+                $.each(m[0], function (idx, val) {
+                    get_msg(val);
+                })
             }
         });
 
@@ -48,7 +47,14 @@
 
             var div = document.getElementById('ratings');
 
-            div.innerHTML = div.innerHTML + '<div><h3>' + name + ' | ' + rating + ' | ' + message + '</h3<div>';
+            var block = '<div class="rating"><center>Avg. Rating';
+            for (var i = 0; i < rating; i++) {
+                block += '<span class="glyphicon glyphicon-unchecked rating"></span>'
+            }
+            block += '<span class="comments-number">' + rating
+            block += '</span><span class="glyphicon glyphicon-comment">'+message+'</span></center></div>'
+
+            div.innerHTML = div.innerHTML + block;
         }
 
         // Subscribe to a channel
