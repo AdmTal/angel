@@ -81,6 +81,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     TEMPLATE_DIR,
+    'templates',
 )
 
 ROOT_URLCONF = 'angel.urls'
