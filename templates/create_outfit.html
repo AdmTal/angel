@@ -1,7 +1,353 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wear This?</title>
 
-{% block body %}
+<!-- Bootstrap -->
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300|Bitter:400,700' rel='stylesheet'
+      type='text/css'>
 
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style>
+
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+body {
+    font-family: 'Bitter', serif;;
+}
+
+.nav-center {
+    text-align: center;
+}
+
+a {
+    color: black;
+    text-decoration: none !important;
+}
+
+.well {
+    min-height: 10px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border-radius: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* nav bar */
+
+.navbar-default {
+    background-color: #00c97b;
+    border-color: #00c97b;
+}
+
+.navbar-default .navbar-brand {
+    color: #000000;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-text {
+    color: #00c97b;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #00c97b;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #00c97b;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #00c97b;
+    background-color: #00c97b;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #00c97b;
+    background-color: #00c97b;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #00c97b;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #00c97b;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #00c97b;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #00c97b;
+}
+
+.navbar-default .navbar-link {
+    color: #00c97b;
+}
+
+.navbar-default .navbar-link:hover {
+    color: #00c97b;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #ecf0f1;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #ffbbbc;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #ffbbbc;
+        background-color: #c0392b;
+    }
+}
+
+/* 1.html and 2.html */
+.friend-vote {
+    font-size: 10px;
+    margin: 5px;
+}
+
+.friend-name {
+
+}
+
+.friend-comment {
+    font-family: 'Source Sans Pro';
+    font-size: 15px;
+    line-height: 5px
+}
+
+.rating {
+    margin-left: 1px;
+}
+
+.rating-archive {
+    margin-top: 0px !important;
+}
+
+.comments-number {
+    margin-right: 3px;
+    margin-left: 15px;
+}
+
+.exit-image {
+    width: 5%;
+}
+
+.main-image {
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.title-header {
+    background-color: #00c97b;
+    padding: 2px;
+    margin: 10px;
+    color: white;
+}
+
+/* 3.html taking a photo */
+
+.photo-button img {
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+/* 4.html picture preview */
+.picture-preview {
+    background-color: #4A4A4A;
+
+}
+
+.pic-preview {
+    padding: 30px;
+}
+
+.preview-buttons {
+    margin: 5px;
+    padding: 5px;
+}
+
+.preview-buttons button {
+    margin: 0 auto;
+    display: block;
+    padding: 5px 20px 5px 20px;
+    margin-bottom: 5px;
+}
+
+.preview-buttons p {
+    text-align: center;
+    color: white;
+}
+
+/* 5.html post photo */
+
+.picture-post {
+    background-color: white;
+
+}
+
+.pic-post {
+    padding: 30px;
+}
+
+.post-buttons button {
+    margin: 0 auto;
+    display: block;
+    padding: 5px 20px 5px 20px;
+    margin-bottom: 5px;
+}
+
+/* 6.html wait for stats */
+.wait-stats {
+    background-color: #00c97b;
+    text-align: center;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.wait-image {
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+}
+
+/* 11.html log in page */
+
+.login-bg {
+    background-color: #00c97b;
+    padding-bottom: 100px;
+}
+
+.login-social {
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-or {
+    color: white;
+    text-align: center
+}
+
+.login-bottom {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.bottom-icons {
+    margin: 0 auto;
+    display: block;
+}
+
+.sign-in-button {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.log-user {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+.social-button {
+    padding: 5px;
+}
+
+.logo-signin {
+    padding-bottom: 15px;
+}
+
+/* 15.html  vote now for friends */
+
+.vote-now {
+    margin: 12px;
+    font-size: 2.2em;
+
+}
+
+.submit-answer {
+    text-align: center;
+}
+
+.sub-button {
+    margin-top: 10px;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+.starter-template {
+    padding-bottom: 30px
+}
+
+/* sign-up page */
+
+.register-bg {
+    background-color: #00c97b;
+    padding-bottom: 100px;
+    padding-top: 20px
+}
+
+.regis {
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+
+.choose-pic {
+    padding-left: 50px;
+}
+</style>
+</head>
+<body>
+<!-- Static navbar -->
+<header class="title-header">
+    <center><h4>Can I Wear This Out Of The House?</h4></center>
+</header>
+<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <div class="navbar-header">
+        <!--     <button type="button" class="navbar-toggle" > -->
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        {#    <a class="navbar-brand" href="1.html">Archive</a>#}
+        <a class="navbar-brand" href="{% url 'create_outfit' %}">Post</a>
+        <a class="navbar-brand" href="{% url 'friends' %}">Friends</a>
+        <a class="navbar-brand" href="{% url 'logout' %}">Log out</a>
+        {#    <a class="navbar-brand" href="#">Answer</a>#}
+    </div>
+</div>
 
     <div class="container">
         <form method="POST" action="{% url 'create_outfit' %}" enctype="multipart/form-data">
