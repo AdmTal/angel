@@ -2,72 +2,82 @@
 
 {% block title %}Register{% endblock %}
 
+{% block style %}
+body {
+font-family: 'Bitter', serif;
+background-color: #00c97b;
+}
+
+{% endblock %}
+
 {% block body %}
-    {% if registered or user.is_authenticated %}
-        <strong>Thank you for registering</strong>
-        <a href="/">Go Home</a><br/>
-    {% else %}
-        <div class="register-bg">
-            <p class='regis'>Register</p>
+{% if registered or user.is_authenticated %}
+<strong>Thank you for registering</strong>
+<a href="/">Go Home</a><br/>
+{% else %}
+<div class="register-bg">
+    <p class='regis'>Register</p>
 
-            <div class='register-username input-group input-group-lg'>
+    <div class='register-username'>
 
-                <form id="user_form" method="post" action="/register/"
-                      enctype="multipart/form-data">
+        <form id="user_form" method="post" action="/register/"
+              enctype="multipart/form-data">
 
-                    {% csrf_token %}
-                    <div class="form-control log-user login-button">
-                        <div class="col-sm-12">
-                            {{ user_form.username }}
-                        </div>
-                        <br>
-                    </div>
-                    <div class="form-control log-user login-button">
-                        <div class="col-sm-12">
-                            {{ user_form.email }}
-                        </div>
-                        <br>
-                    </div>
-                    <div class="form-control log-user login-button">
-                        <div class="col-sm-12">
-                            {{ user_form.password }}
-                        </div>
-                        <br>
-                    </div>
-                    <div class="form-control log-user login-button">
-                        <div class="col-sm-12">
-                            {{ profile_form.pushover_key }}
-                        </div>
-                        <br>
-
-                        <div class="form-control choose-pic">
-                            <label for="exampleInputFile">Profile Picture</label>
-                            <center class='choose-pic'>{{ profile_form.picture }}</center>
-                        </div>
-                        <p class="help-block"></p>
-                    </div>
-                    <br>
-
-
-                    <div class="form-group log-user"><br>
-
-                        <div class="col-sm-12">
-                            <input type="submit" class="btn btn-default sign-in-button" value="Register">
-                        </div>
-                    </div>
-                </form>
+            {% csrf_token %}
+            <div class="form-group log-user login-button">
+                <div class="col-sm-12">
+                    {{ user_form.username }}
+                </div>
+                <br>
             </div>
-        </div>
-        </div>
-    {% endif %}
+            <div class="form-group log-user login-button">
+                <div class="col-sm-12">
+                    {{ user_form.email }}
+                </div>
+                <br>
+            </div>
+            <div class="form-group log-user login-button">
+                <div class="col-sm-12">
+                    {{ user_form.password }}
+                </div>
+                <br>
+            </div>
+            <div class="form-group log-user login-button">
+                <div class="col-sm-12">
+                    {{ profile_form.pushover_key }}
+                </div>
+                <br>
+
+                <div class="form-group choose-pic">
+                    <label for="exampleInputFile">Profile Picture</label>
+                    <center class='choose-pic'>{{ profile_form.picture }}</center>
+                </div>
+                <p class="help-block"></p>
+            </div>
+            <br>
+
+
+            <div class="form-group log-user"><br>
+
+                <div class="col-sm-12">
+                    <input type="submit" class="btn btn-default sign-in-button" value="Register">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endif %}
 {% endblock %}
 
 {% block javascript %}
-    <script>
+<script>
 
         $('#id_pushover_key').attr('placeholder', 'Push Over Key');
         $('#id_username').attr('placeholder', 'Username');
         $('#id_email').attr('placeholder', 'email@example.com');
         $('#id_password').attr('placeholder', 'Password');
-    </script>
+
+
+</script>
 {% endblock %}
