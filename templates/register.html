@@ -3,7 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% if user.is_authenticated %}
+    {% if registered or user,is_authenticated %}
         <strong>Thank you for registering</strong>
         <a href="/">Go Home</a><br/>
     {% else %}
